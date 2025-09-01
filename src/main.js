@@ -27,16 +27,19 @@ document.addEventListener("keydown", (event) => {
 });
 
 function startGame() {
-  snake = initSnake();
+  snake = initSnake(400,400, box);
   food = generateFood(box, canvas);
 
   gameInterval = setInterval(draw, gameSpeed); // Stockage de l'identifiant de l'intervalle
 }
 
 function draw() { 
+
+  //Efface tout le canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   drawScore(ctx, score, 10, 30);
-
-
+  drawSnake(ctx, snake, box);
 }
 
 startGame();
