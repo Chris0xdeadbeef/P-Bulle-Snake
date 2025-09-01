@@ -1,4 +1,12 @@
 /**
+ * ETML
+ * Auteur : Christopher Ristic
+ * Date : 01.09.2024
+ * Description : Bibliothèque pour gérer le serpent dans le jeu Snake.
+ */
+
+
+/**
  * Initialise le serpent au début du jeu.
  *
  * Cette fonction crée le serpent en tant que tableau contenant un seul segment,

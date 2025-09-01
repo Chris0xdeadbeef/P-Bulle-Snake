@@ -1,4 +1,11 @@
 /**
+ * ETML
+ * Auteur : Christopher Ristic
+ * Date : 01.09.2024
+ * Description : Bibliothèque pour gérer la nourriture dans le jeu Snake.
+ */
+
+/**
  * Génère de manière aléatoire la position de la nourriture sur la grille du jeu.
  *
  * La nourriture est placée à une position aléatoire sur la grille, en s'assurant

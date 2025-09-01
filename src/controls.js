@@ -1,4 +1,11 @@
 /**
+ * ETML
+ * Auteur : Christopher Ristic
+ * Date : 01.09.2024
+ * Description : Bibliothèque pour gérer les contrôles du jeu Snake.
+ */
+
+/**
  * Gère le changement de direction du serpent en fonction de l'entrée de l'utilisateur.
  *
  * Cette fonction est appelée chaque fois qu'une touche directionnelle est pressée.

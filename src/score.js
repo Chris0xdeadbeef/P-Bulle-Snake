@@ -1,4 +1,11 @@
 /**
+ * ETML
+ * Auteur : Christopher Ristic
+ * Date : 01.09.2024
+ * Description : Bibliothèque pour gérer l'affichage du score dans le jeu Snake.
+ */
+
+/**
  * Dessine le score sur le canvas.
  *
  * Cette fonction affiche le score actuel du jeu dans le coin supérieur gauche du canvas.

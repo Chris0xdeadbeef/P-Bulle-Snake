@@ -1,4 +1,11 @@
 /**
+ * ETML
+ * Auteur : Christopher Ristic
+ * Date : 01.09.2024
+ * Description : Bibliothèque pour gérer les collisions dans le jeu Snake.
+ */
+
+/**
  * Vérifie si la tête du serpent entre en collision avec son propre corps.
  *
  * Cette fonction détermine si la tête du serpent occupe la même position que

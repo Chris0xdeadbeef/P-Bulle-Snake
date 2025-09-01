@@ -1,3 +1,10 @@
+/**
+ * ETML
+ * Auteur : Christopher Ristic
+ * Date : 01.09.2024
+ * Description : Programme principal du jeu Snake.
+ */
+
 import { initSnake, moveSnake, drawSnake } from "./snake.js";
 import { generateFood, drawFood } from "./food.js";
 import { handleDirectionChange } from "./controls.js";
