@@ -26,9 +26,7 @@ function generateFood() {
  * @param {number} box - La taille d'une case de la grille en pixels, utilisée pour déterminer la taille de la nourriture.
  */
 function drawFood(ctx, food, box) {
-  // Définir la couleur de la nourriture
-  ctx.fillStyle = "red";
-
-  // Dessiner un rectangle représentant la nourriture
-  ctx.fillRect(food.x * box, food.y * box, box, box); 
+  
 }
+
+export { generateFood, drawFood };
