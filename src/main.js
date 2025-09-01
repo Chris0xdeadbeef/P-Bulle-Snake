@@ -27,8 +27,7 @@ function startGame() {
 }
 
 function draw() { 
-  // Affiche le score
-  drawScore(ctx, score);
+  drawScore(ctx, score, 10, 30);
 
 
 }
