@@ -1,7 +1,12 @@
 /**
  * ETML
- * Auteur : Christopher Ristic
- * Date : 01.09.2024
+ * Auteur initial : Grégory Charmier
+ * Date initiale : 29.08.2024
+ *
+ * Modified by : Christopher Ristic, 01.09.2025   // facultatif, si modifications majeures (> 80% du code)
+ *
+ * @module  score.js
+ * @author  Grégory Charmier
  * Description : Bibliothèque pour gérer l'affichage du score dans le jeu Snake.
  */
 
