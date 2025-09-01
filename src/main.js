@@ -26,8 +26,11 @@ function startGame() {
   gameInterval = setInterval(draw, gameSpeed); // Stockage de l'identifiant de l'intervalle
 }
 
-function draw() {
-  // A compléter
+function draw() { 
+  // Affiche le score
+  drawScore(ctx, score);
+
+
 }
 
 startGame();
