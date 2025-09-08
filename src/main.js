@@ -21,7 +21,7 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 const box = 20;
-const gameSpeed = 200;
+const gameSpeed = 100;
 let snake;
 let food;
 let direction = Direction.RIGHT; // Direction initiale
