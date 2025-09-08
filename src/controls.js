@@ -28,6 +28,7 @@ import { Direction, ArrowKey } from "./constantes";
 function handleDirectionChange(keyboardEvent, currentDirection) {
   const key = keyboardEvent.key;
 
+  // Empêche le serpent de se retourner sur lui-même
   switch (key) {
     case ArrowKey.UP:
 
