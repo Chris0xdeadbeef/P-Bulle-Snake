@@ -60,6 +60,7 @@ function handleDirectionChange(keyboardEvent, currentDirection) {
     default:
       return currentDirection;
   }
+   console.log("Touche pressée:", keyboardEvent.key, "Direction actuelle:", currentDirection);
   return currentDirection;
 }
 
