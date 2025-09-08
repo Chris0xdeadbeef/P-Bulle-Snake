@@ -11,7 +11,7 @@
  * Description : Bibliothèque pour gérer le serpent dans le jeu Snake.
  */
 
-import { snakeBodyColor, snakeHeadColor } from "./constantes";
+import { direction as Direction, snakeBodyColor, snakeHeadColor } from "./constantes";
 
 /**
  * Initialise le serpent au début du jeu.
@@ -45,9 +45,49 @@ function initSnake(canvasWidth, canvasHeight, box) {
  * @param {number} box - La taille d'une case de la grille en pixels, utilisée pour déterminer la distance de déplacement du serpent.
  * @returns {{x: number, y: number}} - Un objet représentant les nouvelles coordonnées `x` et `y` de la tête du serpent après le déplacement.
  */
-function moveSnake() {
-  // A compléter
+function moveSnake(snake, direction, box) {
+  // Trouver la tête actuelle
+  const head = snake[0];
+  let newHead;
+
+  // Calculer la nouvelle position de la tête selon direction
+  switch (direction) {
+    case Direction.UP:
+      newHead = {
+        x: head.x,
+        y: head.y - box
+      };
+      break;
+
+    case Direction.DOWN:
+      newHead = {
+        x: head.x,
+        y: head.y + box
+      };
+      break;
+
+    case Direction.LEFT:
+      newHead = {
+        x: head.x - box,
+        y: head.y
+      };
+      break;
+
+    case Direction.RIGHT:
+      newHead = {
+        x: head.x + box,
+        y: head.y
+      };
+      break;
+  }
+
+  // Ajouter la nouvelle tête au début du tableau
+  snake.unshift(newHead);
+
+  // Enlever le dernier segment
+  snake.pop();
 }
+
 
 /**
  * Dessine le serpent sur le canvas.
@@ -63,11 +103,10 @@ function moveSnake() {
  */
 function drawSnake(ctx, snake, box) {
 
-
-    snake.forEach((segment, index) => {
-    if (index === 0) 
+  snake.forEach((segment, index) => {
+    if (index === 0)
       ctx.fillStyle = snakeHeadColor; // tête
-    else 
+    else
       ctx.fillStyle = snakeBodyColor; // corps
 
     ctx.fillRect(segment.x, segment.y, box, box);
