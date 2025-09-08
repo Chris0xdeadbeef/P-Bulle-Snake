@@ -19,6 +19,9 @@
  *
  * @returns {Array<{x: number, y: number}>} - Un tableau contenant un objet représentant la position du premier segment du serpent.
  */
+
+import { snakeBodyColor, snakeHeadColor } from "./constantes";
+
 function initSnake(canvasWidth, canvasHeight, box) {
   // Position de départ : centre du canvas
   const startX = Math.floor(canvasWidth / 2 / box) * box;
@@ -59,11 +62,13 @@ function moveSnake() {
  * @param {number} box - La taille d'une case de la grille en pixels, utilisée pour déterminer la taille de chaque segment du serpent.
  */
 function drawSnake(ctx, snake, box) {
+
+
     snake.forEach((segment, index) => {
     if (index === 0) 
-      ctx.fillStyle = "green"; // tête
+      ctx.fillStyle = snakeHeadColor; // tête
     else 
-      ctx.fillStyle = "lightgreen"; // corps
+      ctx.fillStyle = snakeBodyColor; // corps
 
     ctx.fillRect(segment.x, segment.y, box, box);
 
