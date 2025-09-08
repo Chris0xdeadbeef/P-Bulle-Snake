@@ -9,14 +9,14 @@
  * Description : Bibliothèque pour gérer les constantes.
  */
 
-const Direction = {
+const direction = {
     UP: "UP",
     DOWN: "DOWN",
     LEFT: "LEFT",
     RIGHT: "RIGHT"
 };
 
-const ArrowKey = {
+const arrowKey = {
     UP: "ArrowUp",
     DOWN: "ArrowDown",
     LEFT: "ArrowLeft",
@@ -26,4 +26,4 @@ const ArrowKey = {
 const snakeHeadColor = "green";
 const snakeBodyColor = "lightgreen";
 
-export { snakeHeadColor, snakeBodyColor, Direction, ArrowKey };
+export { snakeHeadColor, snakeBodyColor, direction, arrowKey };
