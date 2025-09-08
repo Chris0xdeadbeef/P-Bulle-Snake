@@ -33,28 +33,28 @@ function handleDirectionChange(keyboardEvent, currentDirection) {
     case arrowKey.UP:
 
       if (currentDirection !== direction.DOWN)
-        return Direction.UP;
+        return direction.UP;
 
       break;
 
     case arrowKey.DOWN:
 
       if (currentDirection !== direction.UP)
-        return Direction.DOWN;
+        return direction.DOWN;
 
       break;
 
     case arrowKey.LEFT:
 
       if (currentDirection !== direction.RIGHT)
-        return Direction.LEFT;
+        return direction.LEFT;
 
       break;
 
     case arrowKey.RIGHT:
 
       if (currentDirection !== direction.LEFT)
-        return Direction.RIGHT;
+        return direction.RIGHT;
 
       break;
 
