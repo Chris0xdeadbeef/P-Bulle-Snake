@@ -10,6 +10,8 @@
  * Description : Bibliothèque pour gérer les contrôles du jeu Snake.
  */
 
+import { Direction, ArrowKey } from "./constantes";
+
 /**
  * Gère le changement de direction du serpent en fonction de l'entrée de l'utilisateur.
  *
@@ -22,8 +24,6 @@
  * @param {string} currentDirection - La direction actuelle du serpent (peut être "UP", "DOWN", "LEFT", ou "RIGHT").
  * @returns {string} - La nouvelle direction du serpent après traitement, ou la direction actuelle si le changement n'est pas valide.
  */
-
-import { Direction, ArrowKey } from "./constantes";
 
 function handleDirectionChange(keyboardEvent, currentDirection) {
   const key = keyboardEvent.key;
