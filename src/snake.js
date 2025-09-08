@@ -11,6 +11,8 @@
  * Description : Bibliothèque pour gérer le serpent dans le jeu Snake.
  */
 
+import { snakeBodyColor, snakeHeadColor } from "./constantes";
+
 /**
  * Initialise le serpent au début du jeu.
  *
@@ -19,8 +21,6 @@
  *
  * @returns {Array<{x: number, y: number}>} - Un tableau contenant un objet représentant la position du premier segment du serpent.
  */
-
-import { snakeBodyColor, snakeHeadColor } from "./constantes";
 
 function initSnake(canvasWidth, canvasHeight, box) {
   // Position de départ : centre du canvas
