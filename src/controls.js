@@ -18,12 +18,49 @@
  * (pour éviter que le serpent se retourne sur lui-même) et retourne la nouvelle direction
  * si elle est valide.
  *
- * @param {KeyboardEvent} event - L'événement clavier qui contient les informations sur la touche pressée.
+ * @param {KeyboardEvent} keyboardEvent - L'événement clavier qui contient les informations sur la touche pressée.
  * @param {string} currentDirection - La direction actuelle du serpent (peut être "UP", "DOWN", "LEFT", ou "RIGHT").
  * @returns {string} - La nouvelle direction du serpent après traitement, ou la direction actuelle si le changement n'est pas valide.
  */
-function handleDirectionChange() {
-  // A compléter
+
+import { Direction, ArrowKey } from "./constantes";
+
+function handleDirectionChange(keyboardEvent, currentDirection) {
+  const key = keyboardEvent.key;
+
+  switch (key) {
+    case ArrowKey.UP:
+
+      if (currentDirection !== Direction.DOWN)
+        return Direction.UP;
+
+      break;
+
+    case ArrowKey.DOWN:
+
+      if (currentDirection !== Direction.UP)
+        return Direction.DOWN;
+
+      break;
+
+    case ArrowKey.LEFT:
+
+      if (currentDirection !== Direction.RIGHT)
+        return Direction.LEFT;
+
+      break;
+
+    case ArrowKey.RIGHT:
+
+      if (currentDirection !== Direction.LEFT)
+        return Direction.RIGHT;
+
+      break;
+
+    default:
+      return currentDirection;
+  }
+  return currentDirection;
 }
 
 export { handleDirectionChange };
