@@ -13,3 +13,4 @@
   };
 
   export const snakeHeadColor = "green";
+  export const snakeBodyColor = "lightgreen";
