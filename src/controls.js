@@ -10,7 +10,7 @@
  * Description : Bibliothèque pour gérer les contrôles du jeu Snake.
  */
 
-import { Direction, ArrowKey } from "./constantes";
+import { direction, arrowKey } from "./constantes";
 
 /**
  * Gère le changement de direction du serpent en fonction de l'entrée de l'utilisateur.
@@ -30,30 +30,30 @@ function handleDirectionChange(keyboardEvent, currentDirection) {
 
   // Empêche le serpent de se retourner sur lui-même
   switch (key) {
-    case ArrowKey.UP:
+    case arrowKey.UP:
 
-      if (currentDirection !== Direction.DOWN)
+      if (currentDirection !== direction.DOWN)
         return Direction.UP;
 
       break;
 
-    case ArrowKey.DOWN:
+    case arrowKey.DOWN:
 
-      if (currentDirection !== Direction.UP)
+      if (currentDirection !== direction.UP)
         return Direction.DOWN;
 
       break;
 
-    case ArrowKey.LEFT:
+    case arrowKey.LEFT:
 
-      if (currentDirection !== Direction.RIGHT)
+      if (currentDirection !== direction.RIGHT)
         return Direction.LEFT;
 
       break;
 
-    case ArrowKey.RIGHT:
+    case arrowKey.RIGHT:
 
-      if (currentDirection !== Direction.LEFT)
+      if (currentDirection !== direction.LEFT)
         return Direction.RIGHT;
 
       break;
