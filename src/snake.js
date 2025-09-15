@@ -19,6 +19,9 @@ import { direction as Direction, snakeBodyColor, snakeHeadColor } from "./consta
  * Cette fonction crée le serpent en tant que tableau contenant un seul segment,
  * positionné à une position de départ définie sur la grille.
  *
+ * @param {number} canvasWidth - Largeur du canvas en pixels, utilisée pour centrer le serpent.
+ * @param {number} canvasHeight - Hauteur du canvas en pixels, utilisée pour centrer le serpent.
+ * @param {number} box - Taille d'une case de la grille en pixels, utilisée pour positionner correctement le serpent.
  * @returns {Array<{x: number, y: number}>} - Un tableau contenant un objet représentant la position du premier segment du serpent.
  */
 
@@ -28,9 +31,7 @@ function initSnake(canvasWidth, canvasHeight, box) {
   const startY = Math.floor(canvasHeight / 2 / box) * box;
 
   // Le serpent est un tableau de segments
-  const snake = [{ x: startX, y: startY }];
-
-  return snake;
+  return [{ x: startX, y: startY }];  
 }
 
 /**
@@ -91,7 +92,6 @@ function moveSnake(snake, direction, box) {
   return newHead;
 }
 
-
 /**
  * Dessine le serpent sur le canvas.
  *
@@ -113,9 +113,7 @@ function drawSnake(ctx, snake, box) {
       ctx.fillStyle = snakeBodyColor; // corps
 
     ctx.fillRect(segment.x, segment.y, box, box);
-
   });
 }
-
 
 export { initSnake, moveSnake, drawSnake }; 
