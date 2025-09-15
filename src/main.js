@@ -15,7 +15,7 @@ import { generateFood, drawFood } from "./food.js";
 import { handleDirectionChange } from "./controls.js";
 import { checkCollision, checkWallCollision } from "./collision.js";
 import { drawScore } from "./score.js";
-import {direction as Direction, LAYERS} from "./constantes.js";
+import { direction as Direction, LAYERS } from "./constantes.js";
 
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
@@ -42,22 +42,31 @@ function startGame() {
 
 function draw() {
 
-  //Efface tout le canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+ moveSnake(snake, direction, box); // Déplacement en premier
   const head = snake[0];
 
-  drawScore(ctx, score, 10, 30);
-  drawSnake(ctx, snake, box);
-  moveSnake(snake, direction, box);
-  
-   // Vérifie collisions et game over
+  // Vérifie collisions avec corps et murs
   if (checkCollision(head, snake) || checkWallCollision(head, canvas, box, entities)) {
     clearInterval(gameInterval);
     alert("Game Over !");
-    return;
+    return true;
   }
 
-  
+  // Vérifie si le serpent mange la nourriture
+  if (head.x === food.x && head.y === food.y) {
+    ++score;
+
+    // Ajoute un nouveau segment au serpent en dupliquant la queue
+    const tail = { ...snake[snake.length - 1], layer: LAYERS.SNAKE };
+    snake.push(tail);
+
+    food = generateFood(box, canvas);
+  }
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawFood(ctx, food, box);
+  drawSnake(ctx, snake, box);
+  drawScore(ctx, score, 10, 30);
 }
 
 startGame();
