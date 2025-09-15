@@ -86,6 +86,9 @@ function moveSnake(snake, direction, box) {
 
   // Enlever le dernier segment
   snake.pop();
+
+  // Retourner la nouvelle tête
+  return newHead;
 }
 
 
