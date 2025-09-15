@@ -11,7 +11,7 @@
  * Description : Bibliothèque pour gérer le serpent dans le jeu Snake.
  */
 
-import { direction as Direction, snakeBodyColor, snakeHeadColor } from "./constantes";
+import { direction as Direction, snakeBodyColor, snakeHeadColor, LAYERS } from "./constantes";
 
 /**
  * Initialise le serpent au début du jeu.
@@ -22,7 +22,7 @@ import { direction as Direction, snakeBodyColor, snakeHeadColor } from "./consta
  * @param {number} canvasWidth - Largeur du canvas en pixels, utilisée pour centrer le serpent.
  * @param {number} canvasHeight - Hauteur du canvas en pixels, utilisée pour centrer le serpent.
  * @param {number} box - Taille d'une case de la grille en pixels, utilisée pour positionner correctement le serpent.
- * @returns {Array<{x: number, y: number}>} - Un tableau contenant un objet représentant la position du premier segment du serpent.
+ * @returns {Array<{x: number, y: number}>} - Un tableau contenant un objet représentant la position du premier segment du serpent et son layer.
  */
 
 function initSnake(canvasWidth, canvasHeight, box) {
@@ -30,8 +30,8 @@ function initSnake(canvasWidth, canvasHeight, box) {
   const startX = Math.floor(canvasWidth / 2 / box) * box;
   const startY = Math.floor(canvasHeight / 2 / box) * box;
 
-  // Le serpent est un tableau de segments
-  return [{ x: startX, y: startY }];  
+  // Le serpent est un tableau de segments avec layer SNAKE
+  return [{ x: startX, y: startY, layer: LAYERS.SNAKE }];
 }
 
 /**
@@ -56,28 +56,32 @@ function moveSnake(snake, direction, box) {
     case Direction.UP:
       newHead = {
         x: head.x,
-        y: head.y - box
+        y: head.y - box,
+        layer: LAYERS.SNAKE
       };
       break;
 
     case Direction.DOWN:
       newHead = {
         x: head.x,
-        y: head.y + box
+        y: head.y + box,
+        layer: LAYERS.SNAKE
       };
       break;
 
     case Direction.LEFT:
       newHead = {
         x: head.x - box,
-        y: head.y
+        y: head.y,
+        layer: LAYERS.SNAKE
       };
       break;
 
     case Direction.RIGHT:
       newHead = {
         x: head.x + box,
-        y: head.y
+        y: head.y,
+        layer: LAYERS.SNAKE
       };
       break;
   }
