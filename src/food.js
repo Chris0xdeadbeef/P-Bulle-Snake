@@ -10,6 +10,8 @@
  * Description : Bibliothèque pour gérer la nourriture dans le jeu Snake.
  */
 
+import { LAYERS, foodColor } from "./constantes.js";
+
 /**
  * Génère de manière aléatoire la position de la nourriture sur la grille du jeu.
  *
@@ -21,9 +23,11 @@
  * @param {HTMLCanvasElement} canvas - L'élément canvas représentant la surface de jeu.
  * @returns {{x: number, y: number}} - Un objet contenant les coordonnées `x` et `y` de la nourriture générée.
  */
-function generateFood() {
-  // A compléter
+function generateFood(box, canvas) {
+  const x = Math.floor(Math.random() * (canvas.width / box)) * box;
+  const y = Math.floor(Math.random() * (canvas.height / box)) * box;
 
+  return { x, y, layer: LAYERS.FOOD };
 }
 
 /**
@@ -38,7 +42,8 @@ function generateFood() {
  * @param {number} box - La taille d'une case de la grille en pixels, utilisée pour déterminer la taille de la nourriture.
  */
 function drawFood(ctx, food, box) {
-  
+  ctx.fillStyle = foodColor; // couleur de la nourriture
+  ctx.fillRect(food.x, food.y, box, box);
 }
 
 export { generateFood, drawFood };
