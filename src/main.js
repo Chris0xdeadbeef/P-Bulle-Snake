@@ -57,7 +57,7 @@ function drawPauseMessage() {
   ctx.fillStyle = "rgba(0, 0, 0, 0.5)"; // fond semi-transparent
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
-  ctx.fillStyle = "#FFFFFF"; // texte blanc
+  ctx.fillStyle = "#FFFFFF";
   ctx.font = "40px Arial";
   ctx.textAlign = "center";
   ctx.fillText("PAUSE", canvas.width / 2, canvas.height / 2);
