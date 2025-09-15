@@ -9,6 +9,7 @@
  * @author  Grégory Charmier
  * Description : Bibliothèque pour gérer les collisions dans le jeu Snake.
  */
+import { LAYERS } from "./constantes.js";
 
 /**
  * Vérifie si la tête du serpent entre en collision avec son propre corps.
@@ -22,13 +23,19 @@
  * @param {Array<{x: number, y: number}>} snakeArray - Un tableau d'objets représentant les segments du serpent, où chaque objet contient des coordonnées `x` et `y`.
  * @returns {boolean} - Retourne `true` si la tête du serpent entre en collision avec un segment de son corps, sinon `false`.
  */
-function checkCollision() {
-   for (let i = 1; i < snakeArray.length; ++i) {
-    if (head.x === snakeArray[i].x && head.y === snakeArray[i].y) {
-      return true;
-    }
-  }
-  return false;
+function checkCollision(head, snakeArray) {
+  const noHeadOrBody = !head || !Array.isArray(snakeArray);
+
+  if (noHeadOrBody)
+    return false;
+
+  // On ignore la tête (index 0)
+  return snakeArray.slice(1).some(segment => {
+    const isSnakeSegment = (segment.layer & LAYERS.SNAKE) !== 0;
+    const isSamePosition = segment.x === head.x && segment.y === head.y;
+
+    return isSnakeSegment && isSamePosition;
+  });
 }
 
 /**
@@ -42,10 +49,27 @@ function checkCollision() {
  * @param {{x: number, y: number}} head - Un objet représentant les coordonnées `x` et `y` de la tête du serpent.
  * @param {HTMLCanvasElement} canvas - L'élément canvas représentant la surface de jeu.
  * @param {number} box - La taille d'une case de la grille en pixels, utilisée pour déterminer les limites du déplacement du serpent.
+ * @param {Array<{x:number, y:number, layer:number}>} [entities=[]] - Tableau des entités du jeu pouvant être des murs internes ou obstacles. 
+ *        Chaque entité peut avoir un `layer` ; la fonction vérifie si la tête du serpent touche un segment avec `layer = WALL`.
  * @returns {boolean} - Retourne `true` si la tête du serpent entre en collision avec un mur, sinon `false`.
  */
-function checkWallCollision() {
-  // A compléter
+function checkWallCollision(head, canvas, box, entities = []) {
+  if (!head || !canvas || typeof box !== "number") return false;
+
+  // Collision avec les bords du canvas (en tenant compte de la taille du segment)
+  const hitLeft = head.x < 0;
+  const hitTop = head.y < 0;
+  const hitRight = head.x + box > canvas.width;
+  const hitBottom = head.y + box > canvas.height;
+
+  // Collision avec murs internes via layer
+  const hitWall = entities.some(segment =>
+    (segment.layer & LAYERS.WALL) !== 0 &&
+    segment.x === head.x &&
+    segment.y === head.y
+  );
+
+  return hitLeft || hitTop || hitRight || hitBottom || hitWall;
 }
 
 export { checkCollision, checkWallCollision };
