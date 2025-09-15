@@ -29,6 +29,9 @@ let score = 0;
 let gameInterval; // Variable pour stocker l'identifiant de l'intervalle
 let entities = [];// Liste des entités du jeu (murs internes, bonus, etc.)
 let isPaused = false; // État de pause du jeu
+let startTime;        // Timestamp du début de la partie
+let elapsedTime = 0;  // Temps écoulé en secondes
+let timerInterval;    // Intervalle pour mettre à jour le chrono
 
 document.addEventListener("keydown", (event) => {
   direction = handleDirectionChange(event, direction);
@@ -46,7 +49,6 @@ document.addEventListener("keydown", (event) => {
     else {
       gameInterval = setInterval(draw, gameSpeed);
     }
-
   }
   else {
     direction = handleDirectionChange(event, direction);
@@ -66,7 +68,7 @@ function drawPauseMessage() {
 function startGame() {
   snake = initSnake(400, 400, box);
   food = generateFood(box, canvas);
-
+  startTimer();
   gameInterval = setInterval(draw, gameSpeed); // Stockage de l'identifiant de l'intervalle
 }
 
@@ -92,11 +94,29 @@ function draw() {
 
     food = generateFood(box, canvas);
   }
-
+  
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  drawTimer(ctx);
   drawFood(ctx, food, box);
   drawSnake(ctx, snake, box);
-  drawScore(ctx, score, 10, 30);
+  drawScore(ctx, score, 100, 20);
 }
+
+function startTimer() {
+  startTime = Date.now() - elapsedTime * 1000; // Reprendre si pause
+  timerInterval = setInterval(() => {
+    elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+  }, 1000);
+}
+
+function drawTimer(ctx) {
+  ctx.fillStyle = "black";
+  ctx.font = "20px Arial";
+  ctx.textAlign = "right";
+  ctx.fillText(`Temps: ${elapsedTime}s`, canvas.width - 40, 20);
+}
+
+
 
 startGame();
