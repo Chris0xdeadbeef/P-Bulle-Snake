@@ -23,7 +23,12 @@
  * @returns {boolean} - Retourne `true` si la tête du serpent entre en collision avec un segment de son corps, sinon `false`.
  */
 function checkCollision() {
-  // A compléter
+   for (let i = 1; i < snakeArray.length; ++i) {
+    if (head.x === snakeArray[i].x && head.y === snakeArray[i].y) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /**
