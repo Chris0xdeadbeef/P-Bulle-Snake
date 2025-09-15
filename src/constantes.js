@@ -26,4 +26,12 @@ const arrowKey = {
 const snakeHeadColor = "green";
 const snakeBodyColor = "lightgreen";
 
-export { snakeHeadColor, snakeBodyColor, direction, arrowKey };
+const LAYERS = {
+  NONE:  0x0000,
+  APPLE: 0x0001, // 0001
+  WALL:  0x0002, // 0010
+  BONUS: 0x0004, // 0100
+  SNAKE: 0x0008  // 1000
+};
+
+export { LAYERS, snakeHeadColor, snakeBodyColor, direction, arrowKey };
