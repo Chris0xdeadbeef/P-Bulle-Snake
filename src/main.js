@@ -28,10 +28,40 @@ let direction = Direction.RIGHT; // Direction initiale
 let score = 0;
 let gameInterval; // Variable pour stocker l'identifiant de l'intervalle
 let entities = [];// Liste des entités du jeu (murs internes, bonus, etc.)
+let isPaused = false; // État de pause du jeu
 
 document.addEventListener("keydown", (event) => {
   direction = handleDirectionChange(event, direction);
 });
+
+document.addEventListener("keydown", (event) => {
+  if (event.code === "Space") {
+    // bascule pause/reprise
+    isPaused = !isPaused;
+
+    if (isPaused) {
+      clearInterval(gameInterval);
+      drawPauseMessage();
+    }
+    else {
+      gameInterval = setInterval(draw, gameSpeed);
+    }
+
+  }
+  else {
+    direction = handleDirectionChange(event, direction);
+  }
+});
+
+function drawPauseMessage() {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.5)"; // fond semi-transparent
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  ctx.fillStyle = "#FFFFFF"; // texte blanc
+  ctx.font = "40px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText("PAUSE", canvas.width / 2, canvas.height / 2);
+}
 
 function startGame() {
   snake = initSnake(400, 400, box);
@@ -42,7 +72,7 @@ function startGame() {
 
 function draw() {
 
- moveSnake(snake, direction, box); // Déplacement en premier
+  moveSnake(snake, direction, box); // Déplacement en premier
   const head = snake[0];
 
   // Vérifie collisions avec corps et murs
