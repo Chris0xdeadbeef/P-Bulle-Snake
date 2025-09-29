@@ -46,7 +46,7 @@ function initSnake(canvasWidth, canvasHeight, box) {
  * @param {number} box - La taille d'une case de la grille en pixels, utilisée pour déterminer la distance de déplacement du serpent.
  * @returns {{x: number, y: number}} - Un objet représentant les nouvelles coordonnées `x` et `y` de la tête du serpent après le déplacement.
  */
-function moveSnake(snake, direction, box) {
+function getNewHead(snake, direction, box) {
   // Trouver la tête actuelle
   const head = snake[0];
   let newHead;
@@ -86,14 +86,26 @@ function moveSnake(snake, direction, box) {
       break;
   }
 
-  // Ajouter la nouvelle tête au début du tableau
-  snake.unshift(newHead);
-
-  // Enlever le dernier segment
-  snake.pop();
-
   // Retourner la nouvelle tête
   return newHead;
+}
+
+/**
+ * Applique le déplacement du serpent sur le plateau.
+ *
+ * Cette fonction insère la nouvelle tête du serpent en première position
+ * dans le tableau représentant le serpent, puis supprime le dernier
+ * segment (la queue) afin de maintenir la longueur constante.
+ *
+ * @param {Array<{x: number, y: number, layer: number}>} snake - Tableau représentant le serpent
+ * @param {{x: number, y: number, layer: number}} newHead - La nouvelle tête calculée pour le serpent (avant application).
+ */
+function applyMove(snake, newHead) {
+  // ajoute la tête
+  snake.unshift(newHead);
+  
+  // enlève la queue
+  snake.pop();
 }
 
 /**
@@ -120,4 +132,4 @@ function drawSnake(ctx, snake, box) {
   });
 }
 
-export { initSnake, moveSnake, drawSnake }; 
+export { initSnake, getNewHead, drawSnake, applyMove }; 

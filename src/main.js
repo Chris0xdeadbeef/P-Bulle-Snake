@@ -10,7 +10,7 @@
  * Description : Programme principal du jeu Snake.
  */
 
-import { initSnake, moveSnake, drawSnake } from "./snake.js";
+import { initSnake, getNewHead, drawSnake, applyMove } from "./snake.js";
 import { generateFood, drawFood } from "./food.js";
 import { handleDirectionChange } from "./controls.js";
 import { checkCollision, checkWallCollision } from "./collision.js";
@@ -21,7 +21,7 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 const box = 20;
-const gameSpeed = 100;
+const gameSpeed = 150;
 let snake;
 let food;
 let direction = Direction.RIGHT; // Direction initiale
@@ -74,27 +74,31 @@ function startGame() {
 
 function draw() {
 
-  moveSnake(snake, direction, box); // Déplacement en premier
-  const head = snake[0];
+  const newHead = getNewHead(snake, direction, box);
 
-  // Vérifie collisions avec corps et murs
-  if (checkCollision(head, snake) || checkWallCollision(head, canvas, box, entities)) {
+  // Vérifie collisions avant de bouger
+  if (checkCollision(newHead, snake) || checkWallCollision(newHead, canvas, box, entities)) {
     clearInterval(gameInterval);
+    clearInterval(timerInterval);
     alert("Game Over !");
     return true;
   }
 
+  // Applique le déplacement si pas de collision
+  applyMove(snake, newHead);
+
   // Vérifie si le serpent mange la nourriture
-  if (head.x === food.x && head.y === food.y) {
+  if (newHead.x === food.x && newHead.y === food.y) {
     ++score;
 
-    // Ajoute un nouveau segment au serpent en dupliquant la queue
+    // Ajoute un segment à la fin
     const tail = { ...snake[snake.length - 1], layer: LAYERS.SNAKE };
     snake.push(tail);
 
     food = generateFood(box, canvas);
   }
-  
+
+  // Nettoyage et dessin
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   drawTimer(ctx);
