@@ -10,17 +10,17 @@
  */
 
 const direction = {
-    UP: "UP",
-    DOWN: "DOWN",
-    LEFT: "LEFT",
-    RIGHT: "RIGHT"
+  UP: "UP",
+  DOWN: "DOWN",
+  LEFT: "LEFT",
+  RIGHT: "RIGHT"
 };
 
 const arrowKey = {
-    UP: "ArrowUp",
-    DOWN: "ArrowDown",
-    LEFT: "ArrowLeft",
-    RIGHT: "ArrowRight"
+  UP: "ArrowUp",
+  DOWN: "ArrowDown",
+  LEFT: "ArrowLeft",
+  RIGHT: "ArrowRight"
 };
 
 const snakeHeadColor = "green";
@@ -28,9 +28,9 @@ const snakeBodyColor = "lightgreen";
 const foodColor = "red";
 
 const LAYERS = {
-  NONE:  0x0000,
+  NONE: 0x0000,
   FOOD: 0x0001, // 0001
-  WALL:  0x0002, // 0010
+  WALL: 0x0002, // 0010
   SNAKE: 0x0008  // 1000
 };
 
