@@ -55,6 +55,25 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+// Fonction pour charger la config
+async function loadConfig() {
+    try {
+        const response = await fetch('./config.json'); // chemin relatif
+        if (!response.ok) throw new Error('Impossible de charger config.json');
+        const config = await response.json();
+        return config;
+    } catch (error) {
+        console.error("Erreur lors du chargement de la config :", error);
+        // Valeurs par défaut si échec
+        return {
+            canvasWidth: 800,
+            canvasHeight: 600,
+            box: 20,
+            gameSpeed: 150
+        };
+    }
+}
+
 function drawPauseMessage() {
   ctx.fillStyle = "rgba(0, 0, 0, 0.5)"; // fond semi-transparent
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -65,7 +84,9 @@ function drawPauseMessage() {
   ctx.fillText("PAUSE", canvas.width / 2, canvas.height / 2);
 }
 
-function startGame() {
+async function startGame() {
+  const config = await loadConfig();
+
   snake = initSnake(400, 400, box);
   food = generateFood(box, canvas);
   startTimer();
